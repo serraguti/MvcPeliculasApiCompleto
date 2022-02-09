@@ -1,0 +1,46 @@
+﻿@model IEnumerable<MvcPeliculasApiCompleto.Models.Pelicula>
+
+@{
+    ViewData["Title"] = "PeliculasGenero";
+}
+
+<h1>Peliculas por Genero</h1>
+
+<table class="table table-warning">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Titulo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FechaEstreno)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Precio)
+            </th>
+            <td></td>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Titulo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaEstreno)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Precio)
+            </td>
+            <td>
+                <a asp-controller="Peliculas"
+                   asp-action="DetailsPelicula"
+                   asp-route-idpelicula="@item.IdPelicula">
+                    Details
+                </a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

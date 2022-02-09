@@ -1,0 +1,71 @@
+﻿@model MvcPeliculasApiCompleto.Models.Pelicula
+
+@{
+    ViewData["Title"] = "DetailsPelicula";
+}
+
+<h1>Details Pelicula</h1>
+<a asp-controller="Peliculas"
+   asp-action="PeliculasGenero"
+   asp-route-id="@Model.IdGenero">
+    Volver a peliculas
+</a>
+<hr/>
+<a asp-controller="Peliculas"
+   asp-action="AddPeliculaCarrito"
+   asp-route-idpelicula="@Model.IdPelicula" class="btn btn-outline-dark">
+    Add to Cart
+</a>
+
+<div>
+    <h4>Pelicula</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Titulo)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Titulo)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Argumento)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Argumento)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Foto)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Foto)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.FechaEstreno)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.FechaEstreno)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Actores)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Actores)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Precio)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Precio)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.YouTube)
+        </dt>
+        <dd class = "col-sm-10">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/@Model.YouTube" 
+                    title="YouTube video player" 
+                    frameborder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </dd>
+    </dl>
+</div>
+
