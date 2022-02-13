@@ -6,6 +6,17 @@
 
 <h1>Peliculas Carrito</h1>
 
+@if (Model != null)
+{
+    <a asp-controller="Clientes" asp-action="FinalizarPedido"
+       class="btn btn-info">
+        Finalizar pedido
+    </a>
+} 
+
+<h1 style="color:red">
+    @ViewData["MENSAJE"]
+</h1>
 <table class="table table-dark">
     <thead>
         <tr>

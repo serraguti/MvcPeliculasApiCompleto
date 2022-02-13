@@ -137,5 +137,45 @@ namespace MvcPeliculasApiCompleto.Services
                            select datos;
             return consulta.ToList();
         }
+
+        public async Task<Cliente> GetPerfilCliente(string token)
+        {
+            string request = "/api/peliculas/perfilcliente";
+            Cliente cliente = await this.CallApi<Cliente>(request, token);
+            return cliente;
+        }
+
+        public async Task<List<PedidosCliente>> GetPeidosCliente(string token)
+        {
+            string request = "/api/peliculas/pedidoscliente";
+            List<PedidosCliente> pedidos = 
+                await this.CallApi<List<PedidosCliente>>(request, token);
+            return pedidos;
+        }
+
+        public async Task AddPedido(int idcliente, int idpelicula
+            , int cantidad, DateTime fecha, int precio, string token)
+        {
+            using (HttpClient client = new HttpClient())
+            {
+                string request = "/api/peliculas/addpedido";
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(this.Header);
+                Pedido pedido = new Pedido();
+                pedido.IdCliente = idcliente;
+                pedido.IdPelicula = idpelicula;
+                pedido.Cantidad = 1;
+                pedido.Fecha = DateTime.Now;
+                pedido.Precio = precio;
+                string json = JsonConvert.SerializeObject(pedido);
+                StringContent content =
+                    new StringContent(json, Encoding.UTF8, "application/json");
+                client.BaseAddress = new Uri(this.UrlApi);
+                client.DefaultRequestHeaders.Add("Authorization"
+                    , "bearer " + token);
+                HttpResponseMessage response =
+                    await client.PostAsync(request, content);
+            }
+        }
     }
 }
